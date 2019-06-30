@@ -20,7 +20,7 @@ const PokemonCard = ({ pokemon, showLink }) => {
       >
         <Image src={image} />
         <Box px={2}>
-          <Heading as="h3" pb={1}>
+          <Heading as="h3" pb={1} data-testid="name-display">
             {name}
           </Heading>
           <Text>Number: {number}</Text>

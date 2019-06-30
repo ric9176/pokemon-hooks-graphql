@@ -53,7 +53,7 @@ const mock = [
   }
 ];
 
-describe("<PhotoList />", () => {
+describe("<PokemonDetail />", () => {
   it("should render", async () => {
     const client = createClient(mock);
     const { container } = render(
