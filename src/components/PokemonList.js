@@ -19,7 +19,7 @@ export const pokemonInfo = {
   `
 };
 
-export const GET_CHARACTERS = gql`
+export const GET_POKEMONS = gql`
   {
     pokemons(first: 10) {
       ...Info
@@ -29,7 +29,7 @@ export const GET_CHARACTERS = gql`
 `;
 
 function PokemonList() {
-  const { data, error, loading } = useQuery(GET_CHARACTERS);
+  const { data, error, loading } = useQuery(GET_POKEMONS);
   if (loading) {
     return <div>Loading...</div>;
   }
