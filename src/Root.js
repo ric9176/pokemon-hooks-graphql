@@ -7,6 +7,7 @@ import { createHttpLink } from "apollo-link-http";
 import { ApolloLink } from "apollo-link";
 
 import PokemonList from "./components/PokemonList";
+import PokemonDetail from "./components/PokemonDetail";
 
 const configLink = {
   uri: "https://pokemon-samdavies.stylindex.now.sh/"
@@ -20,7 +21,10 @@ const client = new ApolloClient({
 const Root = () => (
   <ApolloHooksProvider client={client}>
     <Router>
-      <PokemonList />
+      <Switch>
+        <Route exact path="/:id" component={PokemonDetail} />
+        <Route path="/" component={PokemonList} />
+      </Switch>
     </Router>
   </ApolloHooksProvider>
 );
