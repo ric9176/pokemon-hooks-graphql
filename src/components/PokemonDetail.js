@@ -25,7 +25,7 @@ export const GET_POKEMON = gql`
   ${pokemonInfo.info}
 `;
 
-function Photo({ match }) {
+function PokemonDetail({ match }) {
   const pokemonId = match.params.id;
   const { data, error, loading } = useQuery(GET_POKEMON, {
     variables: { id: pokemonId }
@@ -62,8 +62,8 @@ function Photo({ match }) {
   );
 }
 
-Photo.propTypes = {
+PokemonDetail.propTypes = {
   match: PropTypes.object.isRequired
 };
 
-export default Photo;
+export default PokemonDetail;
