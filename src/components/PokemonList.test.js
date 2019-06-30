@@ -36,7 +36,7 @@ const mock = [
 describe("<PokemonList />", () => {
   it("should render", async () => {
     const client = createClient(mock);
-    const { container } = render(
+    const { container, getByText } = render(
       <Router>
         <ApolloProvider client={client} addTypename={false}>
           <PokemonList />
@@ -48,6 +48,7 @@ describe("<PokemonList />", () => {
     expect(container.textContent).toBe("Loading...");
     // We have to wait for the next tick for the queries to be fetched
     await waitForNextTick();
+    expect(container.innerHTML).toContain("More information");
     expect(container.textContent).toBe(
       "BulbasaurNumber: 001maxCP: 951maxHP: 1071types: Grass / PoisonMore information"
     );
