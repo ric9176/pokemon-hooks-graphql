@@ -1,32 +1,31 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
-import { ApolloClient } from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { createHttpLink } from "apollo-link-http";
-import { ApolloLink } from "apollo-link";
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+  ApolloProvider
+} from '@apollo/client'
 
-import PokemonList from "./components/PokemonList";
-import PokemonDetail from "./components/PokemonDetail";
-
-const configLink = {
-  uri: "https://pokemon-samdavies.stylindex.now.sh/"
-};
+import PokemonList from './components/PokemonList'
+import PokemonDetail from './components/PokemonDetail'
 
 const client = new ApolloClient({
-  link: ApolloLink.from([createHttpLink(configLink)]),
-  cache: new InMemoryCache()
-});
+  cache: new InMemoryCache(),
+  link: new HttpLink({
+    uri: 'https://graphql-pokemon.now.sh'
+  })
+})
 
 const Root = () => (
-  <ApolloHooksProvider client={client}>
+  <ApolloProvider client={client}>
     <Router>
       <Switch>
-        <Route exact path="/:id" component={PokemonDetail} />
+        <Route exact path="/:pokemonId" component={PokemonDetail} />
         <Route path="/" component={PokemonList} />
       </Switch>
     </Router>
-  </ApolloHooksProvider>
-);
+  </ApolloProvider>
+)
 
-export default Root;
+export default Root

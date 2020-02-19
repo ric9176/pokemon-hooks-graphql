@@ -36,7 +36,7 @@ const mock = [
 describe("<PokemonList />", () => {
   it("should render", async () => {
     const client = createClient(mock);
-    const { container, getByText } = render(
+    const { container } = render(
       <Router>
         <ApolloProvider client={client} addTypename={false}>
           <PokemonList />

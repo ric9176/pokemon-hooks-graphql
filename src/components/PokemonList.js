@@ -1,9 +1,8 @@
-import React from "react";
-import gql from "graphql-tag";
-import { useQuery } from "react-apollo-hooks";
-import { Flex } from "rebass";
+import React from 'react'
+import { useQuery, gql } from '@apollo/client'
+import { Flex } from 'rebass'
 
-import PokemonCard from "./PokemonCard";
+import PokemonCard from './PokemonCard'
 
 export const pokemonInfo = {
   info: gql`
@@ -17,7 +16,7 @@ export const pokemonInfo = {
       types
     }
   `
-};
+}
 
 export const GET_POKEMONS = gql`
   {
@@ -26,15 +25,15 @@ export const GET_POKEMONS = gql`
     }
   }
   ${pokemonInfo.info}
-`;
+`
 
-function PokemonList() {
-  const { data, error, loading } = useQuery(GET_POKEMONS);
+const PokemonList = () => {
+  const { data, error, loading } = useQuery(GET_POKEMONS)
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
   if (error) {
-    return <div>Error! {error.message}</div>;
+    return <div>Error! {error.message}</div>
   }
   return (
     <React.Fragment>
@@ -44,7 +43,7 @@ function PokemonList() {
         ))}
       </Flex>
     </React.Fragment>
-  );
+  )
 }
 
-export default PokemonList;
+export default PokemonList
